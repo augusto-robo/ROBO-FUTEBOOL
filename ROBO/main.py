@@ -1,6 +1,6 @@
 
 import streamlit as st
-from app.previsor import prever_resultado
+from previsor import prever_resultado
 
 st.title("🔮 Robô Preditor de Futebol")
 

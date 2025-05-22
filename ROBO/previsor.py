@@ -2,7 +2,7 @@
 import joblib
 import pandas as pd
 
-modelo = joblib.load("modelos/preditivo.pkl")
+modelo = joblib.load("dados/modelo_treinado.pkl")
 
 def prever_resultado(time_casa, time_fora):
     dados = pd.DataFrame([{

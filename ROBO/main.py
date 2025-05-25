@@ -2,6 +2,11 @@ import os
 import streamlit as st
 
 st.write("Diretório de trabalho atual:", os.getcwd())
+st.write("Arquivos no diretório atual:", os.listdir())
+import os
+import streamlit as st
+
+st.write("Diretório de trabalho atual:", os.getcwd())
 
 import streamlit as st
 from previsor import prever_resultado

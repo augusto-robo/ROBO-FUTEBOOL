@@ -2,7 +2,8 @@
 import joblib
 import pandas as pd
 
-modelo = joblib.load("dados/modelo_treinado.pkl")
+modelo = joblib.load("ROBO/dados/modelo_treinado.pkl")
+
 
 
 def prever_resultado(time_casa, time_fora):

@@ -4,6 +4,7 @@ import pandas as pd
 
 modelo = joblib.load("dados/modelo_treinado.pkl")
 
+
 def prever_resultado(time_casa, time_fora):
     dados = pd.DataFrame([{
         "media_gols_casa": 1.5,

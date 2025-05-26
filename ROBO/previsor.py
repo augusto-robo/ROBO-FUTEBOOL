@@ -6,7 +6,7 @@ modelo = joblib.load("ROBO/dados/modelo_treinado.pkl")
 
 
 
-def def prever_resultado(time_casa, time_fora):
+def prever_resultado(time_casa, time_fora):
     mapa_times = {
         "real madrid": 1, "barcelona": 2, "bayern munique": 3, "manchester city": 4,
         "manchester united": 5, "liverpool": 6, "chelsea": 7, "psg": 8, "juventus": 9,
@@ -25,21 +25,25 @@ def def prever_resultado(time_casa, time_fora):
         "club américa": 41, "la galaxy": 42, "seattle sounders": 43
     }
 
-    # Normaliza os nomes digitados pelo usuário
+    # Limpeza e validação dos nomes
     time_casa = time_casa.lower().strip()
     time_fora = time_fora.lower().strip()
 
-    # Obtém os valores numéricos dos times ou usa 0 se não existir
+    # Obter valores numéricos
     casa = mapa_times.get(time_casa, 0)
     fora = mapa_times.get(time_fora, 0)
 
+    # Garantir que são inteiros
+    casa = int(casa)
+    fora = int(fora)
+
+    # Montar o dado no formato correto
     dados = [[casa, fora]]
+
+    # Prever com o modelo
     pred = modelo.predict(dados)[0]
     return pred
 
-    }])
-    pred = modelo.predict(dados)[0]
-    if pred == 0:
         return "Vitória da Casa"
     elif pred == 1:
         return "Empate"

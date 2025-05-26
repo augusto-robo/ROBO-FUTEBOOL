@@ -1,42 +1,44 @@
 import streamlit as st
-import os
 from previsor import prever_resultado
 
 st.set_page_config(page_title="Robô do AUGUSTO MB", page_icon="⚽", layout="centered")
 
-# Estilo personalizado com fundo de futebol
+# CSS personalizado com imagem de fundo e estilo profissional
 st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("https://images.unsplash.com/photo-1599058917211-91f1c781f416?auto=format&fit=crop&w=1600&q=80");
+        background: url('https://images.unsplash.com/photo-1599058917211-91f1c781f416?auto=format&fit=crop&w=1600&q=80');
         background-size: cover;
         background-position: center;
-        color: white;
+        font-family: sans-serif;
     }
-    h1, h2, h3 {
+    h1, h3 {
         color: white;
+        text-align: center;
         text-shadow: 2px 2px 5px black;
     }
     .stTextInput > div > div > input {
-        background-color: #f0f0f0;
-        color: black;
+        background-color: #ffffff;
+        color: #000;
+        font-weight: bold;
     }
     .stButton > button {
         background-color: #28a745;
         color: white;
         font-weight: bold;
+        width: 100%;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Cabeçalho
-st.title("⚽ ROBÔ PREDITOR - AUGUSTO MB")
+# Cabeçalho com nome e frase
+st.markdown("## ⚽ ROBÔ PREDITOR AUGUSTO MB")
 st.markdown("### 🙏 VOCÊ É ABENÇOADO E PONTO FINAL")
 
-# Entradas
+# Entrada de times
 time_casa = st.text_input("🏠 Time da Casa").strip()
 time_fora = st.text_input("🚩 Time Visitante").strip()
 
@@ -48,7 +50,7 @@ url_emblemas = {
     "psg": "https://upload.wikimedia.org/wikipedia/en/a/a7/Paris_Saint-Germain_F.C..svg"
 }
 
-# Mostrar emblemas
+# Mostrar escudos
 col1, col2 = st.columns(2)
 if time_casa.lower() in url_emblemas:
     col1.image(url_emblemas[time_casa.lower()], width=100)
@@ -67,4 +69,3 @@ if st.button("🔍 Prever Resultado"):
             st.info("🤝 Empate provável!")
     else:
         st.warning("⚠️ Preencha os dois times para prever!")
-

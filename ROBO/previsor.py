@@ -13,29 +13,21 @@ def prever_resultado(time_casa, time_fora):
         "urawa red diamonds": 22, "al sadd": 23,
 
         "petro": 24, "primeiro de agosto": 25, "esperance": 26, "zamalek": 27, "al ahly": 28,
-        "tp mazembe": 29, "kaizer chiefs": 30, "orlando pirates": 31,
-        "vita club": 32, "cotonsport": 33,
+        "tp mazembe": 29, "kaizer chiefs": 30, "orlando pirates": 31, "vita club": 32, "cotonsport": 33,
 
         "flamengo": 34, "palmeiras": 35, "corinthians": 36, "são paulo": 37,
         "river plate": 38, "boca juniors": 39, "atlético nacional": 40,
         "club américa": 41, "la galaxy": 42, "seattle sounders": 43
     }
 
-    # Padronizar nomes
+    # Normalizar os nomes dos times
     time_casa = time_casa.lower().strip()
     time_fora = time_fora.lower().strip()
 
-    # Obter os números dos times
     casa = mapa_times.get(time_casa, 0)
     fora = mapa_times.get(time_fora, 0)
 
-    # Garantir que são inteiros
-    casa = int(casa)
-    fora = int(fora)
-
-    # Formatar entrada corretamente
     dados = [[casa, fora]]
 
-    # Prever resultado
     pred = modelo.predict(dados)[0]
     return pred

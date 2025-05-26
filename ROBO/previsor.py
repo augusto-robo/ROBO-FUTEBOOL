@@ -1,33 +1,33 @@
 import joblib
 
-modelo = joblib.load("ROBO/dados/modelo_treinado.pkl")
+# Carregar os 3 modelos
+modelo_resultado = joblib.load("ROBO/dados/modelo_resultado.pkl")
+modelo_gols = joblib.load("ROBO/dados/modelo_gols.pkl")
+modelo_cantos = joblib.load("ROBO/dados/modelo_cantos.pkl")
 
 def prever_resultado(time_casa, time_fora):
     mapa_times = {
-        "real madrid": 1, "barcelona": 2, "bayern munique": 3, "manchester city": 4,
-        "manchester united": 5, "liverpool": 6, "chelsea": 7, "psg": 8, "juventus": 9,
-        "inter de milão": 10, "milan": 11, "arsenal": 12, "napoli": 13,
-
-        "al hilal": 14, "al nassr": 15, "al ahli": 16, "al ittihad": 17, "persepolis": 18,
-        "kashima antlers": 19, "gamba osaka": 20, "guangzhou evergrande": 21,
-        "urawa red diamonds": 22, "al sadd": 23,
-
-        "petro": 24, "primeiro de agosto": 25, "esperance": 26, "zamalek": 27, "al ahly": 28,
-        "tp mazembe": 29, "kaizer chiefs": 30, "orlando pirates": 31, "vita club": 32, "cotonsport": 33,
-
-        "flamengo": 34, "palmeiras": 35, "corinthians": 36, "são paulo": 37,
-        "river plate": 38, "boca juniors": 39, "atlético nacional": 40,
-        "club américa": 41, "la galaxy": 42, "seattle sounders": 43
+        "flamengo": 1, "river plate": 2, "chelsea": 3, "psg": 4,
+        "real madrid": 5, "barcelona": 6, "petro": 7, "primeiro de agosto": 8
     }
 
-    # Normalizar os nomes dos times
     time_casa = time_casa.lower().strip()
     time_fora = time_fora.lower().strip()
 
     casa = mapa_times.get(time_casa, 0)
     fora = mapa_times.get(time_fora, 0)
 
-    dados = [[casa, fora]]
+    # Simular estatísticas do confronto (⚠️ depois vamos usar dados reais)
+    dados = [[2, 1, 5, 4]] if casa and fora else [[0, 0, 0, 0]]
 
-    pred = modelo.predict(dados)[0]
-    return pred
+    # Previsões
+    resultado = modelo_resultado.predict(dados)[0]
+    gols = modelo_gols.predict(dados)[0]
+    cantos = modelo_cantos.predict(dados)[0]
+
+    # Montar resposta com frases personalizadas
+    texto_resultado = f"🏁 Resultado provável: **{resultado.upper()}**"
+    texto_gols = "🔥 Mais de 2.5 gols" if gols == 1 else "⚠️ Menos de 2.5 gols"
+    texto_cantos = "🚩 Mais de 8.5 escanteios" if cantos == 1 else "🔍 Menos de 8.5 escanteios"
+
+    return f"{texto_resultado}\n\n{texto_gols}\n{texto_cantos}"

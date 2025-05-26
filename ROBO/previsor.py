@@ -30,4 +30,5 @@ def prever_resultado(time_casa, time_fora):
     texto_gols = "🔥 Mais de 2.5 gols" if gols == 1 else "⚠️ Menos de 2.5 gols"
     texto_cantos = "🚩 Mais de 8.5 escanteios" if cantos == 1 else "🔍 Menos de 8.5 escanteios"
 
-    return f"{texto_resultado}\n\n{texto_gols}\n{texto_cantos}"
+   return f"{texto_resultado}\n\n{texto_gols}\n{texto_cantos}"
+

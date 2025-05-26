@@ -1,10 +1,6 @@
-
 import joblib
-import pandas as pd
 
 modelo = joblib.load("ROBO/dados/modelo_treinado.pkl")
-
-
 
 def prever_resultado(time_casa, time_fora):
     mapa_times = {
@@ -25,11 +21,11 @@ def prever_resultado(time_casa, time_fora):
         "club américa": 41, "la galaxy": 42, "seattle sounders": 43
     }
 
-    # Limpeza e validação dos nomes
+    # Padronizar nomes
     time_casa = time_casa.lower().strip()
     time_fora = time_fora.lower().strip()
 
-    # Obter valores numéricos
+    # Obter os números dos times
     casa = mapa_times.get(time_casa, 0)
     fora = mapa_times.get(time_fora, 0)
 
@@ -37,15 +33,9 @@ def prever_resultado(time_casa, time_fora):
     casa = int(casa)
     fora = int(fora)
 
-    # Montar o dado no formato correto
+    # Formatar entrada corretamente
     dados = [[casa, fora]]
 
-    # Prever com o modelo
+    # Prever resultado
     pred = modelo.predict(dados)[0]
     return pred
-
-        return "Vitória da Casa"
-    elif pred == 1:
-        return "Empate"
-    else:
-        return "Vitória do Visitante"

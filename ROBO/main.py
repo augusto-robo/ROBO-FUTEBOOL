@@ -64,6 +64,14 @@ if st.button("🔍 Prever Resultado"):
             "casa": time_casa.title(),
             "fora": time_fora.title(),
             "resultado": msg
+            # Mostrar histórico de previsões
+if st.session_state['historico']:
+    st.markdown("---")
+    st.markdown("## 📜 Histórico de Previsões")
+
+    for item in st.session_state['historico'][-5:][::-1]:  # últimos 5
+        st.markdown(f"**{item['casa']} vs {item['fora']}** → {item['resultado']}")
+
         })
     else:
         st.warning("⚠️ Preencha os dois times para prever!")

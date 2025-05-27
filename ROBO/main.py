@@ -32,15 +32,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Cabeçalho
 st.markdown("## ⚽ ROBÔ PREDITOR AUGUSTO MB")
 st.markdown("### 🙏 VOCÊ É ABENÇOADO E PONTO FINAL")
 
-# Entrada de dados
 time_casa = st.text_input("🏠 Time da Casa").strip()
 time_fora = st.text_input("🚩 Time Visitante").strip()
 
-# Botão e previsão
 if st.button("🔍 Prever Resultado"):
     if time_casa and time_fora:
         previsao = prever_resultado(time_casa, time_fora)

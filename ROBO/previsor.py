@@ -1,10 +1,14 @@
 import joblib
-
-modelo_resultado = joblib.load("ROBO/dados/modelo_resultado.pkl")
-modelo_gols = joblib.load("ROBO/dados/modelo_gols.pkl")
-modelo_cantos = joblib.load("ROBO/dados/modelo_cantos.pkl")
+import os
 
 def prever_resultado(time_casa, time_fora):
+    try:
+        modelo_resultado = joblib.load("ROBO/dados/modelo_resultado.pkl")
+        modelo_gols = joblib.load("ROBO/dados/modelo_gols.pkl")
+        modelo_cantos = joblib.load("ROBO/dados/modelo_cantos.pkl")
+    except FileNotFoundError:
+        return "⚠️ Os modelos ainda não foram treinados. Clique no botão '⚙️ Treinar Modelos no Servidor'."
+
     mapa_times = {
         "flamengo": 1, "river plate": 2, "chelsea": 3, "psg": 4,
         "real madrid": 5, "barcelona": 6, "petro": 7, "primeiro de agosto": 8

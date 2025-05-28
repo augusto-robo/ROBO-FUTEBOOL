@@ -1,22 +1,3 @@
-from sklearn.ensemble import RandomForestClassifier
-import joblib
-import os
-
-if st.button("⚙️ Treinar Modelos Novamente"):
-    st.info("Treinando modelos...")
-
-    X = [[2, 0, 5, 3], [1, 1, 4, 4], [0, 2, 3, 6], [3, 1, 7, 4], [0, 0, 2, 2], [1, 0, 4, 3], [2, 2, 6, 5], [0, 3, 2, 7]]
-    y_resultado = ["casa", "empate", "fora", "casa", "empate", "casa", "empate", "fora"]
-    y_gols = [1, 0, 1, 1, 0, 0, 1, 1]
-    y_cantos = [1, 0, 1, 1, 0, 0, 1, 1]
-
-    os.makedirs("ROBO/dados", exist_ok=True)
-
-    joblib.dump(RandomForestClassifier().fit(X, y_resultado), "ROBO/dados/modelo_resultado.pkl")
-    joblib.dump(RandomForestClassifier().fit(X, y_gols), "ROBO/dados/modelo_gols.pkl")
-    joblib.dump(RandomForestClassifier().fit(X, y_cantos), "ROBO/dados/modelo_cantos.pkl")
-
-    st.success("✅ Modelos treinados com sucesso!")
 import streamlit as st
 from previsor import prever_resultado
 
@@ -64,3 +45,23 @@ if st.button("🔍 Prever Resultado"):
         st.markdown(previsao)
     else:
         st.warning("⚠️ Preencha os dois times para prever.")
+        from sklearn.ensemble import RandomForestClassifier
+import joblib
+import os
+
+if st.button("⚙️ Treinar Modelos no Servidor"):
+    st.info("Treinando modelos no ambiente Streamlit...")
+
+    X = [[2, 0, 5, 3], [1, 1, 4, 4], [0, 2, 3, 6], [3, 1, 7, 4]]
+    y_resultado = ["casa", "empate", "fora", "casa"]
+    y_gols = [1, 0, 1, 1]
+    y_cantos = [1, 0, 1, 1]
+
+    os.makedirs("ROBO/dados", exist_ok=True)
+
+    joblib.dump(RandomForestClassifier().fit(X, y_resultado), "ROBO/dados/modelo_resultado.pkl")
+    joblib.dump(RandomForestClassifier().fit(X, y_gols), "ROBO/dados/modelo_gols.pkl")
+    joblib.dump(RandomForestClassifier().fit(X, y_cantos), "ROBO/dados/modelo_cantos.pkl")
+
+    st.success("✅ Modelos criados com sucesso no servidor!")
+

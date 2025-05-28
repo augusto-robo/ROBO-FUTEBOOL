@@ -1,6 +1,12 @@
 import streamlit as st
 from previsor import prever_resultado
 
+# ✅ Adicione estas linhas:
+from sklearn.ensemble import RandomForestClassifier
+import joblib
+import os
+
+
 st.set_page_config(page_title="Robô do AUGUSTO MB", page_icon="⚽", layout="centered")
 
 st.markdown(

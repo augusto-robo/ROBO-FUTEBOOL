@@ -2,9 +2,9 @@ import joblib
 
 def prever_resultado(time_casa, time_fora):
     try:
-        modelo_resultado = joblib.load("ROBO/dados/modelo_resultado.pkl")
-        modelo_gols = joblib.load("ROBO/dados/modelo_gols.pkl")
-        modelo_cantos = joblib.load("ROBO/dados/modelo_cantos.pkl")
+        modelo_resultado = joblib.load("dados/modelo_resultado.pkl")
+modelo_gols = joblib.load("dados/modelo_gols.pkl")
+modelo_cantos = joblib.load("dados/modelo_cantos.pkl")
     except FileNotFoundError:
         return "⚠️ Modelos ainda não treinados. Clique em 'Treinar Modelos'."
 
